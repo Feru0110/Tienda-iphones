@@ -1,0 +1,51 @@
+<!-- HTML for Product Page -->
+<div class="product-card">
+    <img src="iphone15.png" alt="iPhone 15 Plus">
+    <h2>iPhone 15 Plus</h2>
+    <p class="price">$999</p>
+    <p>Color</p>
+    <div class="color-options">
+        <input type="radio" name="color" value="Black" checked> Black
+        <input type="radio" name="color" value="Green"> Green
+        <input type="radio" name="color" value="Yellow"> Yellow
+    </div>
+    <p>Almacenamiento</p>
+    <div class="storage-options">
+        <input type="radio" name="storage" value="128GB" checked> 128GB
+        <input type="radio" name="storage" value="256GB"> 256GB
+    </div>
+    <button id="addToCart">Agregar al carrito</button>
+</div>
+
+<script>
+document.getElementById('addToCart').addEventListener('click', function() {
+    const productName = 'iPhone 15 Plus';
+    const productPrice = 999;
+    const productImg = 'iphone15.png';
+
+    // Get the selected color and storage
+    const selectedColor = document.querySelector('input[name="color"]:checked').value;
+    const selectedStorage = document.querySelector('input[name="storage"]:checked').value;
+
+    // Create product object with details
+    const product = {
+        name: productName,
+        price: productPrice,
+        img: productImg,
+        color: selectedColor,
+        storage: selectedStorage
+    };
+
+    // Get existing cart items from localStorage or initialize an empty array
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Add the selected product to the cart
+    cartItems.push(product);
+
+    // Save updated cart in localStorage
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Redirect to the cart page
+    window.location.href = 'carrito.html';
+});
+</script>
