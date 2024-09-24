@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Compras</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="carrito">
+
+        </tbody>
+    </table>
+    <script>
+        // Simulación de carrito
+        const carrito = [];
+
+        // Agregar producto al carrito
+        function agregarAlCarrito(producto, precio) {
+            const existe = carrito.find(item => item.producto === producto);
+            if (existe) {
+                existe.cantidad++;
+            } else {
+                carrito.push({ producto, precio, cantidad: 1 });
+            }
+            actualizarCarrito();
+        }
+
+        function actualizarCarrito() {
+            const carritoElement = document.getElementById('carrito');
+            carritoElement.innerHTML = '';
+            let total = 0;
+            carrito.forEach(item => {
+                const fila = document.createElement('tr');
+                const productoCelda = document.createElement('td');
+                const precioCelda = document.createElement('td');
+                const cantidadCelda = document.createElement('td');
+                const subtotalCelda = document.createElement('td');
+
+                productoCelda.textContent = item.producto;
+                precioCelda.textContent = item.precio;
+                cantidadCelda.textContent = item.cantidad;
+                subtotalCelda.textContent = item.precio * item.cantidad;
+                total += item.precio * item.cantidad;
+
+                fila.appendChild(productoCelda);
+                fila.appendChild(precioCelda);
+                fila.appendChild(cantidadCelda);
+                fila.appendChild(subtotalCelda);
+                carritoElement.appendChild(fila);
+            });
+            document.title = `Carrito de Compras - Total: $${total}`;
+        }
+
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const producto = urlParams.get('producto');
+        const precio = urlParams.get('precio');
+        if (producto && precio) {
+            agregarAlCarrito(producto, precio);
+        }
+    </script>
+</body>
+</html>
