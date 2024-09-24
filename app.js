@@ -1,5 +1,5 @@
 const productos = [
-    { id: 1, nombre: "iPhone 14", precio: 799, imagen: "iphone14.jpg" },
+    { id: 1, nombre: "iPhone 14", precio: 799, imagen: "https://m-cdn.phonearena.com/images/phones/82526-940/Apple-iPhone-14.jpg" },
     { id: 2, nombre: "iPhone 13", precio: 699, imagen: "iphone13.jpg" },
     { id: 3, nombre: "iPhone 12", precio: 599, imagen: "iphone12.jpg" },
     { id: 4, nombre: "iPhone 11", precio: 399, imagen: "iphone11.jpg" },
