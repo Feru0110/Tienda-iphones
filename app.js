@@ -11,3 +11,8 @@ document.querySelectorAll('.btn').forEach(button => {
         window.location.href = 'carrito.html';
     });
 });
+
+function agregarAlCarrito() {
+
+    window.location.href = 'carrito.html';
+}
