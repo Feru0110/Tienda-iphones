@@ -3,44 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
+    <title>Carrito - INOVA.CR</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
         }
-        .carrito {
+        .cart-container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .producto {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .boton-pagar {
-            display: block;
+        table {
             width: 100%;
-            padding: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .checkout-button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            border: none;
             background-color: #4CAF50;
             color: white;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .checkout-button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="carrito">
-        <h1>Carrito de compras</h1>
-        <div class="producto">
-            <span>iPhone 15 Plus</span>
-            <span>$1,000</span>
-        </div>
-        <hr>
-        <h2>Total: $1,000</h2>
-        <a href="pago.html" class="boton-pagar">Pagar</a>
-    </div>
+
+<div class="cart-container">
+    <h1>Carrito de Compras</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Almacenamiento</th>
+                <th>Color</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="cart-items"></tbody>
+    </table>
+    <button class="checkout-button">Proceder al Checkout</button>
+</div>
+
+<script>
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    const storage = urlParams.get('storage');
+    const color = urlParams.get('color');
+    const price = "$999"; 
+
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = `
+        <tr>
+            <td>${product}</td>
+            <td>${storage}</td>
+            <td>${color}</td>
+            <td>${price}</td>
+        </tr>
+    `;
+</script>
+
 </body>
 </html>
